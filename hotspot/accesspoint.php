@@ -15,6 +15,19 @@ if (!isset($_SESSION["mikhmon"])) {
         "?owner" => "accesspoint",
     ));
     $TotalAP = count($getAP);
+
+    // Get active users to count per AP
+    $getActiveUsers = $API->comm("/ip/hotspot/active/print");
+
+    // Count users by interface (AP)
+    $userCountByInterface = array();
+    foreach ($getActiveUsers as $user) {
+        $interface = $user['interface'];
+        if (!isset($userCountByInterface[$interface])) {
+            $userCountByInterface[$interface] = 0;
+        }
+        $userCountByInterface[$interface]++;
+    }
     ?>
 
     <div class="row">
@@ -50,6 +63,7 @@ if (!isset($_SESSION["mikhmon"])) {
                                     <th>IP Address</th>
                                     <th>MAC Address</th>
                                     <th>Merk/Model</th>
+                                    <th class="text-center">User Aktif</th>
                                     <th>Status</th>
                                     <th class="text-center">Aksi</th>
                                 </tr>
@@ -80,6 +94,29 @@ if (!isset($_SESSION["mikhmon"])) {
                                             $status = "Online";
                                             $statusClass = "bg-success";
                                         }
+
+                                        // Get interface name to match with active users
+                                        // Try to find matching interface by AP name or MAC
+                                        $getInterfaces = $API->comm("/interface/print");
+                                        $activeUserCount = 0;
+
+                                        foreach ($getInterfaces as $iface) {
+                                            // Match by comment (AP name) or MAC address
+                                            $ifaceComment = isset($iface['comment']) ? strtolower($iface['comment']) : '';
+                                            $ifaceName = strtolower($iface['name']);
+                                            $apNameLower = strtolower($apName);
+
+                                            if (
+                                                strpos($ifaceComment, $apNameLower) !== false ||
+                                                strpos($ifaceName, $apNameLower) !== false
+                                            ) {
+                                                $interfaceName = $iface['name'];
+                                                if (isset($userCountByInterface[$interfaceName])) {
+                                                    $activeUserCount = $userCountByInterface[$interfaceName];
+                                                    break;
+                                                }
+                                            }
+                                        }
                                         ?>
                                         <tr>
                                             <td class="text-center"><?= $no++; ?></td>
@@ -88,6 +125,12 @@ if (!isset($_SESSION["mikhmon"])) {
                                             <td><code><?= $apIP; ?></code></td>
                                             <td><code><?= $apMAC; ?></code></td>
                                             <td><?= $apModel; ?></td>
+                                            <td class="text-center">
+                                                <span class="badge <?= $activeUserCount > 0 ? 'bg-primary' : 'bg-secondary'; ?>"
+                                                    style="padding:5px 10px; border-radius:15px; font-size:14px;">
+                                                    <?= $activeUserCount; ?> user<?= $activeUserCount != 1 ? 's' : ''; ?>
+                                                </span>
+                                            </td>
                                             <td class="text-center">
                                                 <span class="badge <?= $statusClass; ?>"
                                                     style="padding:5px 10px; border-radius:15px;">
@@ -111,7 +154,7 @@ if (!isset($_SESSION["mikhmon"])) {
                                 } else {
                                     ?>
                                     <tr>
-                                        <td colspan="8" class="text-center">
+                                        <td colspan="9" class="text-center">
                                             <i>Belum ada data access point. Silakan tambahkan access point baru.</i>
                                         </td>
                                     </tr>
