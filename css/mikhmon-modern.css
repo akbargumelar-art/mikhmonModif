@@ -80,6 +80,15 @@ label {
   padding: 0 24px !important;
 }
 
+/* Force dark readable text in navbar */
+.navbar,
+.navbar *,
+#cpage,
+.navbar-left *,
+.navbar-right * {
+  color: var(--neu-text-primary) !important;
+}
+
 #brand {
   font-size: 1.25rem !important;
   font-weight: 800 !important;
@@ -92,12 +101,14 @@ label {
   color: var(--neu-primary) !important;
 }
 
-/* ===== SIDEBAR - Neumorphic ===== */
+/* ===== SIDEBAR - Neumorphic (Widened) ===== */
 .sidenav {
   background-color: var(--neu-bg) !important;
   box-shadow: var(--neu-shadow-lg) !important;
   border: none !important;
   padding: 1rem 0 !important;
+  width: 320px !important;
+  /* Wider sidebar for better readability */
 }
 
 .sidenav .card-header {
