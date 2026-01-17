@@ -1,271 +1,105 @@
 /* 
- * Design Tokens for Mikhmon Modern UI
- * Soft UI / Neumorphism Design System
+ * Design Tokens - Shadcn/ui Inspired
+ * High contrast, readable, modern
  */
 
 :root {
-    /* ===== Color System ===== */
+    /* ===== Background Colors ===== */
+    --background: 0 0% 100%;
+    /* White */
+    --foreground: 240 10% 3.9%;
+    /* Near black for text */
 
-    /* Base Colors */
-    --color-white: #ffffff;
-    --color-black: #000000;
+    --card: 0 0% 100%;
+    /* White */
+    --card-foreground: 240 10% 3.9%;
+    /* Near black */
 
-    /* Neutral Palette (Soft UI background colors) */
-    --color-neutral-50: #f8f9fa;
-    --color-neutral-100: #f1f3f5;
-    --color-neutral-200: #e9ecef;
-    --color-neutral-300: #dee2e6;
-    --color-neutral-400: #ced4da;
-    --color-neutral-500: #adb5bd;
-    --color-neutral-600: #868e96;
-    --color-neutral-700: #495057;
-    --color-neutral-800: #343a40;
-    --color-neutral-900: #212529;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
 
-    /* Primary Color */
-    --color-primary-50: #eff6ff;
-    --color-primary-100: #dbeafe;
-    --color-primary-200: #bfdbfe;
-    --color-primary-300: #93c5fd;
-    --color-primary-400: #60a5fa;
-    --color-primary-500: #3b82f6;
-    --color-primary-600: #2563eb;
-    --color-primary-700: #1d4ed8;
-    --color-primary-800: #1e40af;
-    --color-primary-900: #1e3a8a;
+    --muted: 240 4.8% 95.9%;
+    /* Very light gray */
+    --muted-foreground: 240 3.8% 46.1%;
+    /* Medium gray */
 
-    /* Success Color */
-    --color-success-50: #f0fdf4;
-    --color-success-100: #dcfce7;
-    --color-success-200: #bbf7d0;
-    --color-success-300: #86efac;
-    --color-success-400: #4ade80;
-    --color-success-500: #22c55e;
-    --color-success-600: #16a34a;
-    --color-success-700: #15803d;
-    --color-success-800: #166534;
-    --color-success-900: #14532d;
+    /* ===== Primary (Blue) ===== */
+    --primary: 221.2 83.2% 53.3%;
+    /* Blue 500 */
+    --primary-foreground: 210 40% 98%;
+    /* Near white */
 
-    /* Warning Color */
-    --color-warning-50: #fffbeb;
-    --color-warning-100: #fef3c7;
-    --color-warning-200: #fde68a;
-    --color-warning-300: #fcd34d;
-    --color-warning-400: #fbbf24;
-    --color-warning-500: #f59e0b;
-    --color-warning-600: #d97706;
-    --color-warning-700: #b45309;
-    --color-warning-800: #92400e;
-    --color-warning-900: #78350f;
+    /* ===== Secondary ===== */
+    --secondary: 240 4.8% 95.9%;
+    /* Light gray */
+    --secondary-foreground: 240 5.9% 10%;
+    /* Dark gray */
 
-    /* Error/Danger Color */
-    --color-error-50: #fef2f2;
-    --color-error-100: #fee2e2;
-    --color-error-200: #fecaca;
-    --color-error-300: #fca5a5;
-    --color-error-400: #f87171;
-    --color-error-500: #ef4444;
-    --color-error-600: #dc2626;
-    --color-error-700: #b91c1c;
-    --color-error-800: #991b1b;
-    --color-error-900: #7f1d1d;
+    /* ===== Accent ===== */
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
 
-    /* Info Color */
-    --color-info-50: #f0f9ff;
-    --color-info-100: #e0f2fe;
-    --color-info-200: #bae6fd;
-    --color-info-300: #7dd3fc;
-    --color-info-400: #38bdf8;
-    --color-info-500: #0ea5e9;
-    --color-info-600: #0284c7;
-    --color-info-700: #0369a1;
-    --color-info-800: #075985;
-    --color-info-900: #0c4a6e;
+    /* ===== Destructive (Red) ===== */
+    --destructive: 0 84.2% 60.2%;
+    /* Red 500 */
+    --destructive-foreground: 0 0% 98%;
+
+    /* ===== Success (Green) ===== */
+    --success: 142.1 76.2% 36.3%;
+    /* Green 600 */
+    --success-foreground: 0 0% 98%;
+
+    /* ===== Warning (Orange) ===== */
+    --warning: 24.6 95% 53.1%;
+    /* Orange 500 */
+    --warning-foreground: 0 0% 98%;
+
+    /* ===== Border ===== */
+    --border: 240 5.9% 90%;
+    /* Light gray border */
+    --input: 240 5.9% 90%;
+    --ring: 221.2 83.2% 53.3%;
+    /* Blue for focus ring */
+
+    /* ===== Other ===== */
+    --radius: 0.5rem;
+    /* 8px */
+
+    /* ===== Shadows ===== */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
 
     /* ===== Typography ===== */
-
-    /* Font Families */
-    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-    --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
-
-    /* Font Sizes */
-    --text-xs: 0.75rem;
-    /* 12px */
-    --text-sm: 0.875rem;
-    /* 14px */
-    --text-base: 1rem;
-    /* 16px */
-    --text-lg: 1.125rem;
-    /* 18px */
-    --text-xl: 1.25rem;
-    /* 20px */
-    --text-2xl: 1.5rem;
-    /* 24px */
-    --text-3xl: 1.875rem;
-    /* 30px */
-    --text-4xl: 2.25rem;
-    /* 36px */
-    --text-5xl: 3rem;
-    /* 48px */
-
-    /* Font Weights */
-    --font-light: 300;
-    --font-normal: 400;
-    --font-medium: 500;
-    --font-semibold: 600;
-    --font-bold: 700;
-    --font-extrabold: 800;
-
-    /* Line Heights */
-    --leading-none: 1;
-    --leading-tight: 1.25;
-    --leading-snug: 1.375;
-    --leading-normal: 1.5;
-    --leading-relaxed: 1.625;
-    --leading-loose: 2;
-
-    /* ===== Spacing Scale ===== */
-    --space-0: 0;
-    --space-1: 0.25rem;
-    /* 4px */
-    --space-2: 0.5rem;
-    /* 8px */
-    --space-3: 0.75rem;
-    /* 12px */
-    --space-4: 1rem;
-    /* 16px */
-    --space-5: 1.25rem;
-    /* 20px */
-    --space-6: 1.5rem;
-    /* 24px */
-    --space-8: 2rem;
-    /* 32px */
-    --space-10: 2.5rem;
-    /* 40px */
-    --space-12: 3rem;
-    /* 48px */
-    --space-16: 4rem;
-    /* 64px */
-    --space-20: 5rem;
-    /* 80px */
-
-    /* ===== Border Radius ===== */
-    --radius-none: 0;
-    --radius-sm: 0.25rem;
-    /* 4px */
-    --radius-base: 0.5rem;
-    /* 8px */
-    --radius-md: 0.75rem;
-    /* 12px */
-    --radius-lg: 1rem;
-    /* 16px */
-    --radius-xl: 1.5rem;
-    /* 24px */
-    --radius-2xl: 2rem;
-    /* 32px */
-    --radius-full: 9999px;
-
-    /* ===== Shadows (Soft UI / Neumorphic) ===== */
-
-    /* Light Shadows (for light backgrounds) */
-    --shadow-sm-light:
-        3px 3px 6px rgba(0, 0, 0, 0.1),
-        -3px -3px 6px rgba(255, 255, 255, 0.8);
-
-    --shadow-md-light:
-        6px 6px 12px rgba(0, 0, 0, 0.15),
-        -6px -6px 12px rgba(255, 255, 255, 0.9);
-
-    --shadow-lg-light:
-        10px 10px 20px rgba(0, 0, 0, 0.2),
-        -10px -10px 20px rgba(255, 255, 255, 1);
-
-    --shadow-xl-light:
-        15px 15px 30px rgba(0, 0, 0, 0.25),
-        -15px -15px 30px rgba(255, 255, 255, 1);
-
-    /* Inset Shadows (for pressed state) */
-    --shadow-inset-light:
-        inset 3px 3px 6px rgba(0, 0, 0, 0.1),
-        inset -3px -3px 6px rgba(255, 255, 255, 0.8);
-
-    /* Dark Shadows (for dark backgrounds) */
-    --shadow-sm-dark:
-        3px 3px 6px rgba(0, 0, 0, 0.3),
-        -3px -3px 6px rgba(255, 255, 255, 0.05);
-
-    --shadow-md-dark:
-        6px 6px 12px rgba(0, 0, 0, 0.4),
-        -6px -6px 12px rgba(255, 255, 255, 0.08);
-
-    --shadow-lg-dark:
-        10px 10px 20px rgba(0, 0, 0, 0.5),
-        -10px -10px 20px rgba(255, 255, 255, 0.1);
-
-    --shadow-inset-dark:
-        inset 3px 3px 6px rgba(0, 0, 0, 0.3),
-        inset -3px -3px 6px rgba(255, 255, 255, 0.05);
-
-    /* Status Shadows (colored) */
-    --shadow-primary: 0 4px 20px rgba(59, 130, 246, 0.3);
-    --shadow-success: 0 4px 20px rgba(34, 197, 94, 0.3);
-    --shadow-warning: 0 4px 20px rgba(245, 158, 11, 0.3);
-    --shadow-error: 0 4px 20px rgba(239, 68, 68, 0.3);
-
-    /* ===== Transitions & Animations ===== */
-    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
-
-    --ease-in: cubic-bezier(0.4, 0, 1, 1);
-    --ease-out: cubic-bezier(0, 0, 0.2, 1);
-    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
-
-    /* ===== Z-Index Scale ===== */
-    --z-dropdown: 1000;
-    --z-sticky: 1020;
-    --z-fixed: 1030;
-    --z-modal-backdrop: 1040;
-    --z-modal: 1050;
-    --z-popover: 1060;
-    --z-tooltip: 1070;
-
-    /* ===== Breakpoints (for reference in media queries) ===== */
-    --breakpoint-xs: 480px;
-    --breakpoint-sm: 768px;
-    --breakpoint-md: 1024px;
-    --breakpoint-lg: 1440px;
-    --breakpoint-xl: 1920px;
-
-    /* ===== Component Specific ===== */
-
-    /* Navbar */
-    --navbar-height: 64px;
-
-    /* Sidebar */
-    --sidebar-width: 280px;
-    --sidebar-collapsed-width: 64px;
-
-    /* Container */
-    --container-max-width: 1280px;
-    --container-padding: var(--space-6);
-
-    /* Input */
-    --input-height: 44px;
-    --input-border-width: 1px;
-
-    /* Button */
-    --button-height-sm: 36px;
-    --button-height-base: 44px;
-    --button-height-lg: 52px;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
 }
 
-/* ===== Dark Mode Support ===== */
-@media (prefers-color-scheme: dark) {
-    :root {
-        /* Override colors for dark mode if needed */
-        --color-neutral-50: #212529;
-        --color-neutral-100: #343a40;
-        --color-neutral-200: #495057;
-    }
+/* Helper utility for HSL colors */
+.bg-background {
+    background-color: hsl(var(--background));
+}
+
+.text-foreground {
+    color: hsl(var(--foreground));
+}
+
+.bg-muted {
+    background-color: hsl(var(--muted));
+}
+
+.text-muted-foreground {
+    color: hsl(var(--muted-foreground));
+}
+
+.bg-primary {
+    background-color: hsl(var(--primary));
+}
+
+.text-primary {
+    color: hsl(var(--primary));
+}
+
+.border-border {
+    border-color: hsl(var(--border));
 }
