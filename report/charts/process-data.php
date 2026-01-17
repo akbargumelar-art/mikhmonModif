@@ -4,9 +4,12 @@
  * Aggregates selling data for charts
  */
 
-// Aggregate revenue by date
+// Initialize arrays
 $revenueByDate = array();
 $productCount = array();
+
+// Debug: Log total records
+error_log("Processing $TotalReg records for charts");
 
 for ($i = 0; $i < $TotalReg; $i++) {
     $getname = explode("-|-", $getData[$i]['name']);
@@ -16,7 +19,7 @@ for ($i = 0; $i < $TotalReg; $i++) {
         continue;
     }
 
-    $date = $getname[0];
+    $date = $getname[0]; // Format: jan/08/2026 or 01/08/2026
     $price = floatval($getname[3]);
     $profile = isset($getname[7]) ? $getname[7] : 'Unknown';
 
@@ -32,6 +35,10 @@ for ($i = 0; $i < $TotalReg; $i++) {
     }
     $productCount[$profile]++;
 }
+
+// Debug log
+error_log("Revenue data points: " . count($revenueByDate));
+error_log("Product types: " . count($productCount));
 
 // Sort by date
 ksort($revenueByDate);
@@ -50,4 +57,8 @@ $productCounts = array_values($topProducts);
 
 // Calculate total for percentages
 $totalProducts = array_sum($productCount);
+
+// Debug output
+error_log("Sample revenue dates: " . json_encode(array_slice($revenueDates, 0, 3)));
+error_log("Sample revenue amounts: " . json_encode(array_slice($revenueAmounts, 0, 3)));
 ?>
