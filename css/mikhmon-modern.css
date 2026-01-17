@@ -183,7 +183,7 @@ label {
   box-shadow: var(--neu-shadow-md) !important;
   border: none !important;
   padding: 1.5rem !important;
-  margin-bottom: 1.5rem !important;
+  margin-bottom: 2rem !important;
   transition: var(--neu-transition) !important;
 }
 
@@ -210,6 +210,11 @@ label {
   padding: 0 !important;
 }
 
+/* Force dark readable text in cards that are NOT colored */
+.card:not(.bg-blue):not(.bg-primary):not(.bg-green):not(.bg-success):not(.bg-yellow):not(.bg-warning):not(.bg-red):not(.bg-danger):not(.bg-pink) * {
+  color: var(--neu-text-primary) !important;
+}
+
 /* ===== BOXES - Neumorphic Stats ===== */
 .box {
   background-color: var(--neu-bg) !important;
@@ -217,12 +222,24 @@ label {
   box-shadow: var(--neu-shadow-md) !important;
   border: none !important;
   padding: 1.5rem !important;
+  margin: 0.75rem !important;
   transition: var(--neu-transition) !important;
 }
 
 .box:hover {
   box-shadow: var(--neu-shadow-lg) !important;
   transform: translateY(-3px) !important;
+}
+
+/* Ensure proper spacing in box containers */
+.box-group,
+.row {
+  gap: 1rem !important;
+}
+
+/* Force dark text in regular boxes */
+.box:not(.bg-blue):not(.bg-primary):not(.bg-green):not(.bg-success):not(.bg-yellow):not(.bg-warning):not(.bg-red):not(.bg-danger):not(.bg-pink) * {
+  color: var(--neu-text-primary) !important;
 }
 
 /* Colored boxes - solid colors with white text */
