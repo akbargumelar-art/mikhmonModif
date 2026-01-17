@@ -8,8 +8,7 @@
 <div class="card">
     <div class="card-header">
         <h3><i class="fa fa-pie-chart"></i>
-            <?= isset($_product_composition) ? $_product_composition : "Best Selling Products" ?>
-        </h3>
+            <?= isset($_product_composition) ? $_product_composition : "Best Selling Products" ?></h3>
     </div>
     <div class="card-body">
         <div id="productChart" style="height: 300px;"></div>
@@ -60,7 +59,9 @@
                         enabled: true,
                         format: '<b>{point.name}</b><br>{point.percentage}%',
                         style: {
-                            fontSize: '12px'
+                            fontSize: '12px',
+                            color: '#ffffff',
+                            textOutline: 'none'
                         }
                     },
                     showInLegend: false

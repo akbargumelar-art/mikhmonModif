@@ -7,9 +7,7 @@
 
 <div class="card">
     <div class="card-header">
-        <h3><i class="fa fa-line-chart"></i>
-            <?= isset($_revenue_trend) ? $_revenue_trend : "Revenue Trend" ?>
-        </h3>
+        <h3><i class="fa fa-line-chart"></i> <?= isset($_revenue_trend) ? $_revenue_trend : "Revenue Trend" ?></h3>
     </div>
     <div class="card-body">
         <div id="revenueChart" style="height: 300px;"></div>
@@ -22,13 +20,19 @@
         var revenueDates = <?= json_encode($revenueDates) ?>;
         var revenueAmounts = <?= json_encode($revenueAmounts) ?>;
 
+        console.log('Revenue Dates:', revenueDates);
+        console.log('Revenue Amounts:', revenueAmounts);
+
         // Convert dates to timestamps
         var chartData = [];
         for (var i = 0; i < revenueDates.length; i++) {
             var dateParts = revenueDates[i].split('/');
-            var dateObj = new Date(dateParts[2], parseInt(dateParts[0]) - 1, dateParts[1]);
+            // MM/DD/YYYY format
+            var dateObj = new Date(dateParts[2], parseInt(dateParts[0]) - 1, parseInt(dateParts[1]));
             chartData.push([dateObj.getTime(), parseFloat(revenueAmounts[i])]);
         }
+
+        console.log('Chart Data:', chartData);
 
         Highcharts.chart('revenueChart', {
             chart: {
@@ -36,7 +40,7 @@
                 backgroundColor: 'transparent'
             },
             title: {
-                text: null
+                text: chartData.length === 0 ? 'No data available' : null
             },
             xAxis: {
                 type: 'datetime',
@@ -49,26 +53,27 @@
                 title: {
                     text: 'Revenue (<?= $currency ?>)'
                 },
+                min: 0,
                 labels: {
                     formatter: function () {
-          <?php if (in_array($currency, $cekindo['indo'])) { ?>
-                return '<?= $currency ?> ' + Highcharts.numberFormat(this.value, 0, '', '.');
-          <?php } else { ?>
-                return '<?= $currency ?> ' + Highcharts.numberFormat(this.value, 2, '.', ',');
-          <?php } ?>
-        }
+                        <?php if (in_array($currency, $cekindo['indo'])) { ?>
+                            return '<?= $currency ?> ' + Highcharts.numberFormat(this.value, 0, '', '.');
+                        <?php } else { ?>
+                            return '<?= $currency ?> ' + Highcharts.numberFormat(this.value, 2, '.', ',');
+                        <?php } ?>
+                    }
                 }
             },
             tooltip: {
                 formatter: function () {
-        <?php if (in_array($currency, $cekindo['indo'])) { ?>
-              return '<b>' + Highcharts.dateFormat('%e %b %Y', this.x) + '</b><br/>' +
-                                '<?= $currency ?> ' + Highcharts.numberFormat(this.y, 0, '', '.');
-        <?php } else { ?>
-              return '<b>' + Highcharts.dateFormat('%e %b %Y', this.x) + '</b><br/>' +
-                                '<?= $currency ?> ' + Highcharts.numberFormat(this.y, 2, '.', ',');
-        <?php } ?>
-      }
+                    <?php if (in_array($currency, $cekindo['indo'])) { ?>
+                        return '<b>' + Highcharts.dateFormat('%e %b %Y', this.x) + '</b><br/>' +
+                            '<?= $currency ?> ' + Highcharts.numberFormat(this.y, 0, '', '.');
+                    <?php } else { ?>
+                        return '<b>' + Highcharts.dateFormat('%e %b %Y', this.x) + '</b><br/>' +
+                            '<?= $currency ?> ' + Highcharts.numberFormat(this.y, 2, '.', ',');
+                    <?php } ?>
+                }
             },
             series: [{
                 name: 'Revenue',
@@ -82,7 +87,8 @@
                     ]
                 },
                 marker: {
-                    radius: 4
+                    radius: 4,
+                    fillColor: '#5d9cec'
                 }
             }],
             credits: {
