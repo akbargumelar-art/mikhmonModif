@@ -16,37 +16,44 @@
  *		along with this program.		If not, see <http://www.gnu.org/licenses/>.
  */
 session_start();
- // hide all error
+// hide all error
 error_reporting(0);
 ?>
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>MIKHMON <?= $hotspotname; ?></title>
-		<meta charset="utf-8">
-		<meta http-equiv="cache-control" content="private" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<!-- Tell the browser to be responsive to screen width -->
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!-- Theme color -->
-		<meta name="theme-color" content="<?= $themecolor ?>" />
-		<!-- Font Awesome -->
-		<link rel="stylesheet" type="text/css" href="css/font-awesome/css/font-awesome.min.css" />
-		<!-- Mikhmon UI -->
-		<link rel="stylesheet" href="css/mikhmon-ui.<?= $theme; ?>.min.css">
-		<!-- Modern Theme Extension -->
-		<link rel="stylesheet" href="css/mikhmon-modern.css">
-		<!-- favicon -->
-		<link rel="icon" href="./img/favicon.png" />
-		<!-- jQuery -->
-		<script src="js/jquery.min.js"></script>
-		<!-- pace -->
-		<link href="css/pace.<?= $theme; ?>.css" rel="stylesheet" />
-		<script src="js/pace.min.js"></script>
 
-		
-	</head>
-	<body>
-		<div class="wrapper">
+<head>
+	<title>MIKHMON <?= $hotspotname; ?></title>
+	<meta charset="utf-8">
+	<meta http-equiv="cache-control" content="private" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- Tell the browser to be responsive to screen width -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Theme color -->
+	<meta name="theme-color" content="<?= $themecolor ?>" />
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+		rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" type="text/css" href="css/font-awesome/css/font-awesome.min.css" />
+	<!-- Design System Tokens -->
+	<link rel="stylesheet" href="css/design-tokens.css">
+	<!-- Mikhmon UI -->
+	<link rel="stylesheet" href="css/mikhmon-ui.<?= $theme; ?>.min.css">
+	<!-- Modern Theme Extension -->
+	<link rel="stylesheet" href="css/mikhmon-modern.css">
+	<!-- favicon -->
+	<link rel="icon" href="./img/favicon.png" />
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+	<!-- pace -->
+	<link href="css/pace.<?= $theme; ?>.css" rel="stylesheet" />
+	<script src="js/pace.min.js"></script>
 
-			
+
+</head>
+
+<body>
+	<div class="wrapper">
