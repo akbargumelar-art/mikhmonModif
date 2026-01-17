@@ -333,39 +333,56 @@ label {
   transform: translateY(0) !important;
 }
 
-/* Colored buttons */
+/* Colored buttons - Softer, more visible */
 .btn-primary,
 .bg-primary.btn {
-  background: linear-gradient(135deg, var(--neu-primary), #4a89dc) !important;
+  background-color: var(--neu-primary) !important;
   color: var(--neu-text-white) !important;
   box-shadow:
-    4px 4px 8px rgba(93, 156, 236, 0.4),
-    -4px -4px 8px rgba(255, 255, 255, 0.1) !important;
+    5px 5px 10px rgba(93, 156, 236, 0.3),
+    -5px -5px 10px rgba(255, 255, 255, 0.8) !important;
+}
+
+.btn-primary:hover,
+.bg-primary.btn:hover {
+  box-shadow:
+    7px 7px 14px rgba(93, 156, 236, 0.4),
+    -7px -7px 14px rgba(255, 255, 255, 0.9) !important;
 }
 
 .bg-success.btn {
-  background: linear-gradient(135deg, var(--neu-success), #37bc9b) !important;
+  background-color: var(--neu-success) !important;
   color: var(--neu-text-white) !important;
   box-shadow:
-    4px 4px 8px rgba(72, 207, 173, 0.4),
-    -4px -4px 8px rgba(255, 255, 255, 0.1) !important;
+    5px 5px 10px rgba(72, 207, 173, 0.3),
+    -5px -5px 10px rgba(255, 255, 255, 0.8) !important;
 }
 
 .bg-warning.btn {
-  background: linear-gradient(135deg, var(--neu-warning), #f6bb42) !important;
+  background-color: var(--neu-warning) !important;
   color: var(--neu-text-white) !important;
   box-shadow:
-    4px 4px 8px rgba(255, 206, 84, 0.4),
-    -4px -4px 8px rgba(255, 255, 255, 0.1) !important;
+    5px 5px 10px rgba(255, 206, 84, 0.3),
+    -5px -5px 10px rgba(255, 255, 255, 0.8) !important;
 }
 
 .bg-danger.btn,
 .bg-pink.btn {
-  background: linear-gradient(135deg, var(--neu-danger), #da4453) !important;
+  background-color: var(--neu-danger) !important;
   color: var(--neu-text-white) !important;
   box-shadow:
-    4px 4px 8px rgba(237, 85, 101, 0.4),
-    -4px -4px 8px rgba(255, 255, 255, 0.1) !important;
+    5px 5px 10px rgba(237, 85, 101, 0.3),
+    -5px -5px 10px rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Dark/Black buttons - make them neumorphic too */
+.bg-dark.btn,
+.bg-black.btn {
+  background-color: #5a6c7d !important;
+  color: var(--neu-text-white) !important;
+  box-shadow:
+    5px 5px 10px rgba(90, 108, 125, 0.3),
+    -5px -5px 10px rgba(255, 255, 255, 0.7) !important;
 }
 
 /* ===== FORMS - Neumorphic ===== */
@@ -497,6 +514,7 @@ textarea {
 @media (max-width: 768px) {
   .main-container {
     padding: 1rem !important;
+    margin-left: 0 !important;
   }
 
   .card {
@@ -511,4 +529,10 @@ textarea {
   .sidenav .dropdown-btn {
     margin: 0.25rem 0.75rem !important;
   }
+}
+
+/* ===== LAYOUT FIX - Content Offset for Sidebar ===== */
+.main-container {
+  margin-left: 320px !important;
+  transition: margin-left 0.3s ease !important;
 }
