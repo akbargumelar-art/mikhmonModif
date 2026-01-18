@@ -22,11 +22,13 @@ if (!isset($_SESSION["mikhmon"])) {
     // Count users by interface (AP)
     $userCountByInterface = array();
     foreach ($getActiveUsers as $user) {
-        $interface = $user['interface'];
-        if (!isset($userCountByInterface[$interface])) {
-            $userCountByInterface[$interface] = 0;
+        if (isset($user['interface'])) {
+            $interface = $user['interface'];
+            if (!isset($userCountByInterface[$interface])) {
+                $userCountByInterface[$interface] = 0;
+            }
+            $userCountByInterface[$interface]++;
         }
-        $userCountByInterface[$interface]++;
     }
     ?>
 
@@ -95,25 +97,26 @@ if (!isset($_SESSION["mikhmon"])) {
                                             $statusClass = "bg-success";
                                         }
 
-                                        // Get interface name to match with active users
-                                        // Try to find matching interface by AP name or MAC
-                                        $getInterfaces = $API->comm("/interface/print");
+                                        // Count active users - get all interface names and find match
                                         $activeUserCount = 0;
 
-                                        foreach ($getInterfaces as $iface) {
-                                            // Match by comment (AP name) or MAC address
-                                            $ifaceComment = isset($iface['comment']) ? strtolower($iface['comment']) : '';
-                                            $ifaceName = strtolower($iface['name']);
-                                            $apNameLower = strtolower($apName);
+                                        // Get all interfaces to find matching name/comment
+                                        $allInterfaces = $API->comm("/interface/print");
+                                        $apNameLower = strtolower($apName);
 
+                                        foreach ($allInterfaces as $iface) {
+                                            $ifaceName = isset($iface['name']) ? $iface['name'] : '';
+                                            $ifaceComment = isset($iface['comment']) ? $iface['comment'] : '';
+
+                                            // Match by name or comment containing AP name
                                             if (
-                                                strpos($ifaceComment, $apNameLower) !== false ||
-                                                strpos($ifaceName, $apNameLower) !== false
+                                                stripos($ifaceName, $apNameLower) !== false ||
+                                                stripos($ifaceComment, $apNameLower) !== false
                                             ) {
-                                                $interfaceName = $iface['name'];
-                                                if (isset($userCountByInterface[$interfaceName])) {
-                                                    $activeUserCount = $userCountByInterface[$interfaceName];
-                                                    break;
+
+                                                // Found matching interface, get user count
+                                                if (isset($userCountByInterface[$ifaceName])) {
+                                                    $activeUserCount += $userCountByInterface[$ifaceName];
                                                 }
                                             }
                                         }
